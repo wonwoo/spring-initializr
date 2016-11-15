@@ -25,7 +25,7 @@ public class StarterService {
     this.springProperties = springProperties;
   }
 
-  public Dependencies dependencies(String version){
+  public Dependencies dependencies(String version) {
     return springClient.invoke(
       createRequestEntity(
         createURIBuilder("/ui/dependencies")
@@ -51,8 +51,12 @@ public class StarterService {
   }
 
   private RequestEntity<?> createRequestEntity(URI uri) {
+    return this.createRequestEntity(uri, MediaType.APPLICATION_JSON);
+  }
+
+  private RequestEntity<?> createRequestEntity(URI uri, MediaType mediaType) {
     return RequestEntity.get(uri)
-      .accept(MediaType.APPLICATION_JSON).build();
+      .accept(mediaType).build();
   }
 
 }
