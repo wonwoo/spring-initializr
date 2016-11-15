@@ -1,11 +1,13 @@
 package me.wonwoo.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import me.wonwoo.config.SpringClient;
 import me.wonwoo.config.SpringProperties;
+import me.wonwoo.model.BasicProjectRequest;
 import me.wonwoo.model.Dependencies;
-import me.wonwoo.model.Dependency;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -19,10 +21,12 @@ public class StarterService {
 
   private final SpringClient springClient;
   private final SpringProperties springProperties;
+  private final ObjectMapper objectMapper;
 
-  public StarterService(SpringClient springClient, SpringProperties springProperties) {
+  public StarterService(SpringClient springClient, SpringProperties springProperties, ObjectMapper objectMapper) {
     this.springClient = springClient;
     this.springProperties = springProperties;
+    this.objectMapper = objectMapper;
   }
 
   public Dependencies dependencies(String version) {
@@ -45,6 +49,29 @@ public class StarterService {
       String.class).getBody();
 
   }
+  //TODO 좀더 간결하게..
+  public ResponseEntity<byte[]> springZip(BasicProjectRequest basicRequest) {
+    return springClient.invoke(
+      createRequestEntity(
+        createURIBuilder("/starter.zip")
+          .queryParam("applicationName", basicRequest.getApplicationName())
+          .queryParam("artifactId", basicRequest.getArtifactId())
+          .queryParam("baseDir", basicRequest.getBaseDir())
+          .queryParam("bootVersion", basicRequest.getBootVersion())
+          .queryParam("dependencies", basicRequest.getDependencies())
+          .queryParam("description", basicRequest.getDescription())
+          .queryParam("groupId(", basicRequest.getGroupId())
+          .queryParam("javaVersion", basicRequest.getJavaVersion())
+          .queryParam("language", basicRequest.getLanguage())
+          .queryParam("name", basicRequest.getName())
+          .queryParam("packageName", basicRequest.getPackageName())
+          .queryParam("style", basicRequest.getStyle())
+          .queryParam("type", basicRequest.getType())
+          .queryParam("version", basicRequest.getVersion())
+          .build()
+          .toUri()), byte[].class);
+
+  }
 
   private UriComponentsBuilder createURIBuilder(String path) {
     return UriComponentsBuilder.fromHttpUrl(springProperties.getUrl()).path(path);
@@ -58,5 +85,4 @@ public class StarterService {
     return RequestEntity.get(uri)
       .accept(mediaType).build();
   }
-
 }

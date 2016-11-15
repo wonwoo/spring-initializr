@@ -1,7 +1,9 @@
 package me.wonwoo.web;
 
+import me.wonwoo.model.BasicProjectRequest;
 import me.wonwoo.model.Dependencies;
 import me.wonwoo.service.StarterService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,5 +28,10 @@ public class MainController {
   @GetMapping("/metadata/config")
   public String metadataConfig(){
     return service.metadataConfig();
+  }
+
+  @GetMapping("/starter.zip")
+  public ResponseEntity<byte[]> springZip(BasicProjectRequest basicRequest) {
+    return service.springZip(basicRequest);
   }
 }
