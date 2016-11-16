@@ -3,7 +3,7 @@ package me.wonwoo.mapper;
 import org.springframework.http.MediaType;
 
 /**
- * Created by hellowd on 2016-11-16.
+ * Created by wonwoo on 2016. 11. 15..
  */
 public enum InitializrMetadataVersion {
 
