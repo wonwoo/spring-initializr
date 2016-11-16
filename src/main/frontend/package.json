@@ -1,0 +1,38 @@
+{
+  "name": "spring-initializr",
+  "version": "0.0.1",
+  "description": "spring-initializr Frontend",
+  "license": "apache",
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.7",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-plugin-transform-object-assign": "^6.8.0",
+    "css-loader": "^0.25.0",
+    "expose-loader": "^0.7.1",
+    "imports-loader": "^0.6.5",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.3",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.18.0",
+    "babel-polyfill": "^6.16.0",
+    "history": "^4.4.0",
+    "moment": "^2.15.2",
+    "jquery": "^3.1.1",
+    "react-bootstrap": "^0.30.6",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-router": "^3.0.0",
+    "react-router-bootstrap": "^0.23.1"
+  },
+  "scripts": {
+    "watch": "webpack -d --watch",
+    "dev-build": "webpack -d --display-modules",
+    "prod-build": "webpack -d -p"
+  }
+}

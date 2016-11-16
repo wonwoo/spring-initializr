@@ -55,17 +55,17 @@ public class MainController {
     return service.build(basicRequest);
   }
 
-  @GetMapping(value = "/", produces = "application/hal+json")
+  @GetMapping(value = "/serviceCapabilitiesHal", produces = "application/hal+json")
   public ResponseEntity<String> serviceCapabilitiesHal() {
     return service.serviceCapabilitiesFor(HAL_JSON_CONTENT_TYPE);
   }
 
-  @GetMapping(value = "/", produces = {"application/vnd.initializr.v2.1+json", "application/json"})
+  @GetMapping(value = "/serviceCapabilitiesV21", produces = {"application/vnd.initializr.v2.1+json", "application/json"})
   public ResponseEntity<String> serviceCapabilitiesV21() {
     return service.serviceCapabilitiesFor(InitializrMetadataVersion.V2_1.getMediaType());
   }
 
-  @GetMapping(value = "/", produces = "application/vnd.initializr.v2+json")
+  @GetMapping(value = "/serviceCapabilitiesV2", produces = "application/vnd.initializr.v2+json")
   public ResponseEntity<String> serviceCapabilitiesV2() {
     return service.serviceCapabilitiesFor(InitializrMetadataVersion.V2.getMediaType());
   }
