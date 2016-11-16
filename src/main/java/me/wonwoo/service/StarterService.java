@@ -3,6 +3,7 @@ package me.wonwoo.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.wonwoo.config.SpringClient;
 import me.wonwoo.config.SpringProperties;
+import me.wonwoo.mapper.InitializrMetadataVersion;
 import me.wonwoo.model.BasicProjectRequest;
 import me.wonwoo.model.Dependencies;
 import org.springframework.http.MediaType;
@@ -84,5 +85,82 @@ public class StarterService {
   private RequestEntity<?> createRequestEntity(URI uri, MediaType mediaType) {
     return RequestEntity.get(uri)
       .accept(mediaType).build();
+  }
+
+  public ResponseEntity<byte[]> springTgz(BasicProjectRequest basicRequest) {
+    return springClient.invoke(
+    createRequestEntity(
+      createURIBuilder("/starter.tgz")
+        .queryParam("applicationName", basicRequest.getApplicationName())
+        .queryParam("artifactId", basicRequest.getArtifactId())
+        .queryParam("baseDir", basicRequest.getBaseDir())
+        .queryParam("bootVersion", basicRequest.getBootVersion())
+        .queryParam("dependencies", basicRequest.getDependencies())
+        .queryParam("description", basicRequest.getDescription())
+        .queryParam("groupId(", basicRequest.getGroupId())
+        .queryParam("javaVersion", basicRequest.getJavaVersion())
+        .queryParam("language", basicRequest.getLanguage())
+        .queryParam("name", basicRequest.getName())
+        .queryParam("packageName", basicRequest.getPackageName())
+        .queryParam("style", basicRequest.getStyle())
+        .queryParam("type", basicRequest.getType())
+        .queryParam("version", basicRequest.getVersion())
+        .build()
+        .toUri(),MediaType.parseMediaType("application/x-compress")), byte[].class);
+  }
+
+  public ResponseEntity<byte[]> pom(BasicProjectRequest basicRequest) {
+    return springClient.invoke(
+      createRequestEntity(
+        createURIBuilder("/pom")
+          .queryParam("applicationName", basicRequest.getApplicationName())
+          .queryParam("artifactId", basicRequest.getArtifactId())
+          .queryParam("baseDir", basicRequest.getBaseDir())
+          .queryParam("bootVersion", basicRequest.getBootVersion())
+          .queryParam("dependencies", basicRequest.getDependencies())
+          .queryParam("description", basicRequest.getDescription())
+          .queryParam("groupId(", basicRequest.getGroupId())
+          .queryParam("javaVersion", basicRequest.getJavaVersion())
+          .queryParam("language", basicRequest.getLanguage())
+          .queryParam("name", basicRequest.getName())
+          .queryParam("packageName", basicRequest.getPackageName())
+          .queryParam("style", basicRequest.getStyle())
+          .queryParam("type", basicRequest.getType())
+          .queryParam("version", basicRequest.getVersion())
+          .build()
+          .toUri()), byte[].class);
+  }
+
+  public ResponseEntity<byte[]> build(BasicProjectRequest basicRequest) {
+    return springClient.invoke(
+      createRequestEntity(
+        createURIBuilder("/build")
+          .queryParam("applicationName", basicRequest.getApplicationName())
+          .queryParam("artifactId", basicRequest.getArtifactId())
+          .queryParam("baseDir", basicRequest.getBaseDir())
+          .queryParam("bootVersion", basicRequest.getBootVersion())
+          .queryParam("dependencies", basicRequest.getDependencies())
+          .queryParam("description", basicRequest.getDescription())
+          .queryParam("groupId(", basicRequest.getGroupId())
+          .queryParam("javaVersion", basicRequest.getJavaVersion())
+          .queryParam("language", basicRequest.getLanguage())
+          .queryParam("name", basicRequest.getName())
+          .queryParam("packageName", basicRequest.getPackageName())
+          .queryParam("style", basicRequest.getStyle())
+          .queryParam("type", basicRequest.getType())
+          .queryParam("version", basicRequest.getVersion())
+          .build()
+          .toUri()), byte[].class);
+  }
+
+  public ResponseEntity<String> serviceCapabilitiesFor(MediaType contentType) {
+    return springClient.invoke(
+        createRequestEntity(
+          createURIBuilder("/")
+            .build()
+            .toUri(),contentType), String.class);
+
+
+
   }
 }
