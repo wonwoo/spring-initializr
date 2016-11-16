@@ -159,8 +159,20 @@ public class StarterService {
           createURIBuilder("/")
             .build()
             .toUri(),contentType), String.class);
+  }
 
-
-
+  public ResponseEntity<byte[]> spring() {
+    return springClient.invoke(
+        createRequestEntity(
+            createURIBuilder("/spring")
+              .build()
+              .toUri()), byte[].class);
+  }
+  public ResponseEntity<byte[]> springTgz() {
+    return springClient.invoke(
+      createRequestEntity(
+        createURIBuilder("/spring.tar.gz")
+          .build()
+          .toUri()), byte[].class);
   }
 }

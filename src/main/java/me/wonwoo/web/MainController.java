@@ -69,4 +69,15 @@ public class MainController {
   public ResponseEntity<String> serviceCapabilitiesV2() {
     return service.serviceCapabilitiesFor(InitializrMetadataVersion.V2.getMediaType());
   }
+
+  @GetMapping("/spring")
+  public ResponseEntity<byte[]> spring() {
+    return service.spring();
+  }
+
+  @GetMapping({"spring.tar.gz", "spring.tgz"})
+  public ResponseEntity<byte[]> springTgz() {
+    return service.springTgz();
+  }
+
 }
