@@ -25,8 +25,8 @@ public class MainController {
     this.service = service;
   }
 
-  @GetMapping("/")
-  public Dependencies home(@RequestParam(required = false) String version) {
+  @GetMapping("/ui/dependencies")
+  public Dependencies dependencies(@RequestParam(required = false) String version) {
     return service.dependencies(version);
   }
 
