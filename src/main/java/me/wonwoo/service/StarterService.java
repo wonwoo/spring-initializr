@@ -22,12 +22,10 @@ public class StarterService {
 
   private final SpringClient springClient;
   private final SpringProperties springProperties;
-  private final ObjectMapper objectMapper;
 
-  public StarterService(SpringClient springClient, SpringProperties springProperties, ObjectMapper objectMapper) {
+  public StarterService(SpringClient springClient, SpringProperties springProperties) {
     this.springClient = springClient;
     this.springProperties = springProperties;
-    this.objectMapper = objectMapper;
   }
 
   public Dependencies dependencies(String version) {
