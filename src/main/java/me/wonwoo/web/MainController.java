@@ -30,7 +30,7 @@ public class MainController {
     return service.dependencies(version);
   }
 
-  @GetMapping("/metadata/config")
+  @GetMapping(value = "/metadata/config", produces = "application/json")
   public String metadataConfig(){
     return service.metadataConfig();
   }
