@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Main from './components/Main';
 
 ReactDOM.render(
-<h1 className="testblue">App working</h1>,
-    document.getElementById('container'));
+    <Main />,
+    document.getElementById('app'));
