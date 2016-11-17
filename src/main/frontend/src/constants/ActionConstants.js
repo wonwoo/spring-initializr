@@ -1,0 +1,5 @@
+export default  {
+    API_URL: "",
+    RECEIVE_METADATA: 'RECEIVE_METADATA',
+    RECEIVE_ERROR :'RECEIVE_ERROR'
+};

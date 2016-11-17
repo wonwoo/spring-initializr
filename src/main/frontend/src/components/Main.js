@@ -6,7 +6,43 @@ import Dependencies from './Dependencies';
 import SimpleVersion from './SimpleVersion';
 import FullVersion from './FullVersion';
 
+import MetaDataStore from '../stores/MetaDataStore';
+import MetaDataCreator from '../actions/MetaDataCreator';
+
 export default class Main extends Component {
+
+    constructor(props) {
+        super(props);
+        this._onChange = this._onChange.bind(this);
+        this.state = this.getStateStore();
+    }
+
+    getStateStore() {
+        return {
+            configs: {}
+        }
+    }
+
+    componentWillMount() {
+        MetaDataStore.addChangeListener(this._onChange);
+    }
+
+    componentDidMount() {
+        MetaDataCreator.getMetaConfig()
+    }
+
+    componentWillUnmount() {
+        MetaDataStore.removeChangeListener(this._onChange);
+    }
+
+    _onChange() {
+        this.setState({
+            configs: MetaDataStore.metas
+        });
+        //다시 확인하자
+        console.log(this.state.configs.metas)
+    }
+
     render() {
         return (
             <div>
@@ -21,7 +57,7 @@ export default class Main extends Component {
                             <Choice/>
                             <input id="baseDir" name="baseDir" type="hidden"  />
                             <div className="row">
-                                <Metadata/>
+                                <Metadata content={this.state.configs.metas}/>
                                 <Dependencies/>
                             </div>
                             <SimpleVersion />

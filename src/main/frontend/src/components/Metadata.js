@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 
 export default class Metadata extends Component {
+    constructor(props) {
+        super(props);
+        console.log(props)
+    }
+
     render() {
         return (
             <div className="col-sm-12 col-md-6">
