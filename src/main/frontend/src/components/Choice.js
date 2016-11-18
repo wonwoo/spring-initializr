@@ -11,8 +11,10 @@ export default class Choice extends Component {
 
     getStateStore() {
         return {
-            types :[],
-            bootVersion : []
+            types: [],
+            bootVersion: [],
+            versionValue: "",
+            typeValue : "",
         }
     }
 
@@ -29,6 +31,8 @@ export default class Choice extends Component {
         this.setState({
             types : MetaDataStore.Types.content,
             bootVersion : MetaDataStore.BootVersions.content,
+            typeValue : MetaDataStore.Types.content.filter(boot => boot.default)[0].id,
+            versionValue : MetaDataStore.BootVersions.content.filter(boot => boot.default)[0].id,
         });
     }
 
@@ -37,7 +41,7 @@ export default class Choice extends Component {
             <div className="row form-inline text-center">
                 <div className="form-group project-choice">
                     <h2>Generate a  &nbsp;
-                        <select className="form-control" id="type" name="type">
+                        <select className="form-control" id="type" name="type" value={this.state.typeValue}>
                             {
                                 this.state.types.map((content, idx) => {
                                     return <option key={idx}
@@ -46,7 +50,7 @@ export default class Choice extends Component {
                             }
                         </select>
                         &nbsp; with Spring Boot &nbsp;
-                        <select className="form-control" name="bootVersion" id="bootVersion">
+                        <select className="form-control" name="bootVersion" id="bootVersion" value={this.state.versionValue}>
                             {
                                 this.state.bootVersion.map((content, idx) => {
                                     return <option key={idx}

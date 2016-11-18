@@ -48,21 +48,28 @@ public class StarterService {
   }
   //TODO 좀더 간결하게..
   public ResponseEntity<byte[]> springZip(BasicProjectRequest basicRequest) {
+    Object[] styles = null;
+    if(basicRequest.getStyle() != null){
+      styles = basicRequest.getStyle().stream().toArray();
+    }
+    if(basicRequest.getVersion() == null){
+      basicRequest.setVersion("0.0.1-SNAPSHOT");
+    }
     return springClient.invoke(
       createRequestEntity(
         createURIBuilder("/starter.zip")
           .queryParam("applicationName", basicRequest.getApplicationName())
           .queryParam("artifactId", basicRequest.getArtifactId())
-          .queryParam("baseDir", basicRequest.getBaseDir())
+          .queryParam("baseDir", basicRequest.getArtifactId())
           .queryParam("bootVersion", basicRequest.getBootVersion())
           .queryParam("dependencies", basicRequest.getDependencies())
           .queryParam("description", basicRequest.getDescription())
-          .queryParam("groupId(", basicRequest.getGroupId())
+          .queryParam("groupId", basicRequest.getGroupId())
           .queryParam("javaVersion", basicRequest.getJavaVersion())
           .queryParam("language", basicRequest.getLanguage())
           .queryParam("name", basicRequest.getName())
           .queryParam("packageName", basicRequest.getPackageName())
-          .queryParam("style", basicRequest.getStyle().stream().toArray())
+          .queryParam("style", styles)
           .queryParam("type", basicRequest.getType())
           .queryParam("version", basicRequest.getVersion())
           .build()
@@ -84,21 +91,28 @@ public class StarterService {
   }
 
   public ResponseEntity<byte[]> springTgz(BasicProjectRequest basicRequest) {
+    Object[] styles =null;
+    if(basicRequest.getStyle() != null){
+      styles = basicRequest.getStyle().stream().toArray();
+    }
+    if(basicRequest.getVersion() == null){
+        basicRequest.setVersion("0.0.1-SNAPSHOT");
+    }
     return springClient.invoke(
     createRequestEntity(
       createURIBuilder("/starter.tgz")
         .queryParam("applicationName", basicRequest.getApplicationName())
         .queryParam("artifactId", basicRequest.getArtifactId())
-        .queryParam("baseDir", basicRequest.getBaseDir())
+        .queryParam("baseDir", basicRequest.getArtifactId())
         .queryParam("bootVersion", basicRequest.getBootVersion())
         .queryParam("dependencies", basicRequest.getDependencies())
         .queryParam("description", basicRequest.getDescription())
-        .queryParam("groupId(", basicRequest.getGroupId())
+        .queryParam("groupId", basicRequest.getGroupId())
         .queryParam("javaVersion", basicRequest.getJavaVersion())
         .queryParam("language", basicRequest.getLanguage())
         .queryParam("name", basicRequest.getName())
         .queryParam("packageName", basicRequest.getPackageName())
-        .queryParam("style", basicRequest.getStyle().stream().toArray())
+        .queryParam("style", styles)
         .queryParam("type", basicRequest.getType())
         .queryParam("version", basicRequest.getVersion())
         .build()
@@ -106,21 +120,28 @@ public class StarterService {
   }
 
   public ResponseEntity<byte[]> pom(BasicProjectRequest basicRequest) {
+    Object[] styles =null;
+    if(basicRequest.getStyle() != null){
+      styles = basicRequest.getStyle().stream().toArray();
+    }
+    if(basicRequest.getVersion() == null){
+      basicRequest.setVersion("0.0.1-SNAPSHOT");
+    }
     return springClient.invoke(
       createRequestEntity(
         createURIBuilder("/pom")
           .queryParam("applicationName", basicRequest.getApplicationName())
           .queryParam("artifactId", basicRequest.getArtifactId())
-          .queryParam("baseDir", basicRequest.getBaseDir())
+          .queryParam("baseDir", basicRequest.getArtifactId())
           .queryParam("bootVersion", basicRequest.getBootVersion())
           .queryParam("dependencies", basicRequest.getDependencies())
           .queryParam("description", basicRequest.getDescription())
-          .queryParam("groupId(", basicRequest.getGroupId())
+          .queryParam("groupId", basicRequest.getGroupId())
           .queryParam("javaVersion", basicRequest.getJavaVersion())
           .queryParam("language", basicRequest.getLanguage())
           .queryParam("name", basicRequest.getName())
           .queryParam("packageName", basicRequest.getPackageName())
-          .queryParam("style", basicRequest.getStyle().stream().toArray())
+          .queryParam("style", styles)
           .queryParam("type", basicRequest.getType())
           .queryParam("version", basicRequest.getVersion())
           .build()
@@ -128,21 +149,28 @@ public class StarterService {
   }
 
   public ResponseEntity<byte[]> build(BasicProjectRequest basicRequest) {
+    Object[] styles =null;
+    if(basicRequest.getStyle() != null){
+      styles = basicRequest.getStyle().stream().toArray();
+    }
+    if(basicRequest.getVersion() == null){
+      basicRequest.setVersion("0.0.1-SNAPSHOT");
+    }
     return springClient.invoke(
       createRequestEntity(
         createURIBuilder("/build")
           .queryParam("applicationName", basicRequest.getApplicationName())
           .queryParam("artifactId", basicRequest.getArtifactId())
-          .queryParam("baseDir", basicRequest.getBaseDir())
+          .queryParam("baseDir", basicRequest.getArtifactId())
           .queryParam("bootVersion", basicRequest.getBootVersion())
           .queryParam("dependencies", basicRequest.getDependencies())
           .queryParam("description", basicRequest.getDescription())
-          .queryParam("groupId(", basicRequest.getGroupId())
+          .queryParam("groupId", basicRequest.getGroupId())
           .queryParam("javaVersion", basicRequest.getJavaVersion())
           .queryParam("language", basicRequest.getLanguage())
           .queryParam("name", basicRequest.getName())
           .queryParam("packageName", basicRequest.getPackageName())
-          .queryParam("style", basicRequest.getStyle().stream().toArray())
+          .queryParam("style", styles)
           .queryParam("type", basicRequest.getType())
           .queryParam("version", basicRequest.getVersion())
           .build()
