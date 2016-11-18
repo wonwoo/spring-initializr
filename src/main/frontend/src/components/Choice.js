@@ -39,14 +39,13 @@ export default class Choice extends Component {
                     <h2>Generate a  &nbsp;
                         <select className="form-control" id="type" name="type">
                             {
-
                                 this.state.types.map((content, idx) => {
                                     return <option key={idx}
                                                    value={content.id}>{content.name}</option>;
                                 })
                             }
                         </select>
-                        with Spring Boot &nbsp;
+                        &nbsp; with Spring Boot &nbsp;
                         <select className="form-control" name="bootVersion" id="bootVersion">
                             {
                                 this.state.bootVersion.map((content, idx) => {

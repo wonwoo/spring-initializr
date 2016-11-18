@@ -188,24 +188,5 @@ public class BasicProjectRequest {
     return result;
   }
 
-  @Override
-  public String toString() {
-    return "BasicProjectRequest{" +
-            "style=" + style +
-            ", dependencies=" + dependencies +
-            ", name='" + name + '\'' +
-            ", type='" + type + '\'' +
-            ", description='" + description + '\'' +
-            ", groupId='" + groupId + '\'' +
-            ", artifactId='" + artifactId + '\'' +
-            ", version='" + version + '\'' +
-            ", bootVersion='" + bootVersion + '\'' +
-            ", packaging='" + packaging + '\'' +
-            ", applicationName='" + applicationName + '\'' +
-            ", language='" + language + '\'' +
-            ", packageName='" + packageName + '\'' +
-            ", javaVersion='" + javaVersion + '\'' +
-            ", baseDir='" + baseDir + '\'' +
-            '}';
-  }
+
 }

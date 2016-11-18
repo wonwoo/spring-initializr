@@ -17,6 +17,7 @@ class MetaDataStore extends BaseStore {
         this.packagings;
         this.languages;
         this.javaVersions;
+        this.dependencies;
     }
 
     _registerToActions(payload) {
@@ -35,6 +36,7 @@ class MetaDataStore extends BaseStore {
                 this.packagings = this.metas.packagings;
                 this.languages = this.metas.languages;
                 this.javaVersions = this.metas.javaVersions;
+                this.dependencies = this.metas.dependencies;
                 break;
             default:
                 return true;
@@ -43,6 +45,10 @@ class MetaDataStore extends BaseStore {
         this.emitChange();
 
         return true;
+    }
+
+    get Dependencies() {
+        return this.dependencies
     }
 
     get Name() {

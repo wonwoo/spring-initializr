@@ -1,9 +1,7 @@
 package me.wonwoo.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import me.wonwoo.config.SpringClient;
 import me.wonwoo.config.SpringProperties;
-import me.wonwoo.mapper.InitializrMetadataVersion;
 import me.wonwoo.model.BasicProjectRequest;
 import me.wonwoo.model.Dependencies;
 import org.springframework.http.MediaType;
@@ -64,7 +62,7 @@ public class StarterService {
           .queryParam("language", basicRequest.getLanguage())
           .queryParam("name", basicRequest.getName())
           .queryParam("packageName", basicRequest.getPackageName())
-          .queryParam("style", basicRequest.getStyle())
+          .queryParam("style", basicRequest.getStyle().stream().toArray())
           .queryParam("type", basicRequest.getType())
           .queryParam("version", basicRequest.getVersion())
           .build()
@@ -100,7 +98,7 @@ public class StarterService {
         .queryParam("language", basicRequest.getLanguage())
         .queryParam("name", basicRequest.getName())
         .queryParam("packageName", basicRequest.getPackageName())
-        .queryParam("style", basicRequest.getStyle())
+        .queryParam("style", basicRequest.getStyle().stream().toArray())
         .queryParam("type", basicRequest.getType())
         .queryParam("version", basicRequest.getVersion())
         .build()
@@ -122,7 +120,7 @@ public class StarterService {
           .queryParam("language", basicRequest.getLanguage())
           .queryParam("name", basicRequest.getName())
           .queryParam("packageName", basicRequest.getPackageName())
-          .queryParam("style", basicRequest.getStyle())
+          .queryParam("style", basicRequest.getStyle().stream().toArray())
           .queryParam("type", basicRequest.getType())
           .queryParam("version", basicRequest.getVersion())
           .build()
@@ -144,7 +142,7 @@ public class StarterService {
           .queryParam("language", basicRequest.getLanguage())
           .queryParam("name", basicRequest.getName())
           .queryParam("packageName", basicRequest.getPackageName())
-          .queryParam("style", basicRequest.getStyle())
+          .queryParam("style", basicRequest.getStyle().stream().toArray())
           .queryParam("type", basicRequest.getType())
           .queryParam("version", basicRequest.getVersion())
           .build()
