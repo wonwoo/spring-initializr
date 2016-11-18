@@ -11,10 +11,13 @@ import MetaDataCreator from '../actions/MetaDataCreator';
 
 export default class Main extends Component {
 
+
     constructor(props) {
         super(props);
         this._onChange = this._onChange.bind(this);
         this.state = this.getStateStore();
+
+
     }
 
     getStateStore() {

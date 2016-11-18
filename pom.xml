@@ -60,6 +60,11 @@
 			<version>${jquery.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>mousetrap</artifactId>
+			<version>1.6.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
