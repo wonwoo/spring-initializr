@@ -7,13 +7,18 @@ class MetaDataStore extends BaseStore {
         super();
         this.subscribe(() => this._registerToActions.bind(this));
         this.metas;
+        this.types;
+        this.bootVersions;
     }
 
     _registerToActions(payload) {
         let action = payload.action;
         switch (action.actionType) {
             case ActionConstants.RECEIVE_METADATA:
-                this.metas = action;
+                this.metas = action.metas;
+                console.log(this.metas);
+                this.types = this.metas.types;
+                this.bootVersions = this.metas.bootVersions;
                 break;
             default:
                 return true;
@@ -26,6 +31,14 @@ class MetaDataStore extends BaseStore {
 
     get Metas() {
         return this.metas;
+    }
+
+    get Types() {
+        return this.types;
+    }
+
+    get BootVersions() {
+        return this.bootVersions;
     }
 }
 

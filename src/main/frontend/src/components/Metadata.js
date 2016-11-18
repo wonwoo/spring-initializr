@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 
+import MetaDataStore from '../stores/MetaDataStore';
+
 export default class Metadata extends Component {
-    constructor(props) {
-        super(props);
-        console.log(props)
-    }
 
     render() {
         return (
             <div className="col-sm-12 col-md-6">
-                <h2>Project Metadata</h2>
+                <h2>{this.props.content}123123</h2>
 
                 <p>Artifact coordinates</p>
 

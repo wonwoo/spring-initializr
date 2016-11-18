@@ -39,8 +39,6 @@ export default class Main extends Component {
         this.setState({
             configs: MetaDataStore.metas
         });
-        //다시 확인하자
-        console.log(this.state.configs.metas)
     }
 
     render() {
@@ -57,7 +55,7 @@ export default class Main extends Component {
                             <Choice/>
                             <input id="baseDir" name="baseDir" type="hidden"  />
                             <div className="row">
-                                <Metadata content={this.state.configs.metas}/>
+                                <Metadata />
                                 <Dependencies/>
                             </div>
                             <SimpleVersion />
