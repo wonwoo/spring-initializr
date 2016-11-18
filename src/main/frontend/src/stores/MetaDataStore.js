@@ -9,6 +9,14 @@ class MetaDataStore extends BaseStore {
         this.metas;
         this.types;
         this.bootVersions;
+        this.artifactId;
+        this.groupId;
+        this.name;
+        this.description;
+        this.packageName;
+        this.packagings;
+        this.languages;
+        this.javaVersions;
     }
 
     _registerToActions(payload) {
@@ -19,6 +27,14 @@ class MetaDataStore extends BaseStore {
                 console.log(this.metas);
                 this.types = this.metas.types;
                 this.bootVersions = this.metas.bootVersions;
+                this.artifactId = this.metas.artifactId;
+                this.groupId = this.metas.groupId;
+                this.name = this.metas.name;
+                this.description = this.metas.description;
+                this.packageName = this.metas.packageName;
+                this.packagings = this.metas.packagings;
+                this.languages = this.metas.languages;
+                this.javaVersions = this.metas.javaVersions;
                 break;
             default:
                 return true;
@@ -29,8 +45,36 @@ class MetaDataStore extends BaseStore {
         return true;
     }
 
-    get Metas() {
-        return this.metas;
+    get Name() {
+        return this.name;
+    }
+
+    get Description() {
+        return this.description;
+    }
+
+    get PackageName() {
+        return this.packageName;
+    }
+
+    get Packagings() {
+        return this.packagings;
+    }
+
+    get Languages() {
+        return this.languages;
+    }
+
+    get JavaVersions() {
+        return this.javaVersions;
+    }
+
+    get ArtifactId() {
+        return this.artifactId;
+    }
+
+    get GroupId () {
+        return this.groupId;
     }
 
     get Types() {
