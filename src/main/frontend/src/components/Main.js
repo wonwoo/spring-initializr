@@ -5,6 +5,8 @@ import Metadata from './Metadata';
 import Dependencies from './Dependencies';
 import SimpleVersion from './SimpleVersion';
 import FullVersion from './FullVersion';
+import $ from 'jquery';
+
 
 import MetaDataStore from '../stores/MetaDataStore';
 import MetaDataCreator from '../actions/MetaDataCreator';
@@ -16,8 +18,6 @@ export default class Main extends Component {
         super(props);
         this._onChange = this._onChange.bind(this);
         this.state = this.getStateStore();
-
-
     }
 
     getStateStore() {
@@ -32,6 +32,21 @@ export default class Main extends Component {
 
     componentDidMount() {
         MetaDataCreator.getMetaConfig()
+
+        $(".tofullversion a").on("click", function() {
+            $(".full").removeClass("hidden");
+            $(".tofullversion").addClass("hidden");
+            $(".tosimpleversion").removeClass("hidden");
+            $("body").scrollTop(0);
+            return false;
+        });
+        $(".tosimpleversion a").on("click", function() {
+            $(".full").addClass("hidden");
+            $(".tofullversion").removeClass("hidden");
+            $(".tosimpleversion").addClass("hidden");
+            $("body").scrollTop(0);
+            return false;
+        });
     }
 
     componentWillUnmount() {

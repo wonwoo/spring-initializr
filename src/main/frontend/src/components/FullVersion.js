@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MetaDataStore from '../stores/MetaDataStore';
+import $ from 'jquery';
 
 export default class FullVersion extends Component {
     constructor(props) {
@@ -18,6 +19,19 @@ export default class FullVersion extends Component {
         MetaDataStore.addChangeListener(this._onChange);
     }
 
+    componentDidMount() {
+        Mousetrap.bind(['command+enter', 'alt+enter'], function (e) {
+            jQuery("#form").submit();
+            return false;
+        });
+
+        if (navigator.appVersion.indexOf("Mac") != -1) {
+            $(".btn-primary").append("<kbd>&#8984; + &#9166;</kbd>");
+        }
+        else {
+            $(".btn-primary").append("<kbd>alt + &#9166;</kbd>");
+        }
+    }
 
     componentWillUnmount() {
         MetaDataStore.removeChangeListener(this._onChange);
