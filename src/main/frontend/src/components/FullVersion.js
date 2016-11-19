@@ -51,7 +51,7 @@ export default class FullVersion extends Component {
                     {
                         content.content.map((innerContent, innerId) => {
                             return (
-                                <div className="checkbox" key={innerId}>
+                                <div className="checkbox" data-range={innerContent.versionRange} key={innerId}>
                                     <label>
                                         <input type="checkbox" name="style" value={innerContent.id}/>
                                         {innerContent.name}
