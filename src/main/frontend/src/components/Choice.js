@@ -7,6 +7,8 @@ export default class Choice extends Component {
         super(props);
         this._onChange = this._onChange.bind(this);
         this.state = this.getStateStore();
+        this.handleTypeChange = this.handleTypeChange.bind(this);
+        this.handleBootVersionChange = this.handleBootVersionChange.bind(this);
     }
 
     getStateStore() {
@@ -27,6 +29,14 @@ export default class Choice extends Component {
         MetaDataStore.removeChangeListener(this._onChange);
     }
 
+    handleTypeChange(event) {
+        this.setState({typeValue: event.target.value});
+    }
+
+    handleBootVersionChange(event) {
+        this.setState({versionValue: event.target.value});
+    }
+
     _onChange() {
         this.setState({
             types : MetaDataStore.Types.content,
@@ -41,7 +51,7 @@ export default class Choice extends Component {
             <div className="row form-inline text-center">
                 <div className="form-group project-choice">
                     <h2>Generate a  &nbsp;
-                        <select className="form-control" id="type" name="type" value={this.state.typeValue}>
+                        <select className="form-control" id="type" name="type" value={this.state.typeValue} onChange={this.handleTypeChange}>
                             {
                                 this.state.types.map((content, idx) => {
                                     return <option key={idx}
@@ -50,7 +60,7 @@ export default class Choice extends Component {
                             }
                         </select>
                         &nbsp; with Spring Boot &nbsp;
-                        <select className="form-control" name="bootVersion" id="bootVersion" value={this.state.versionValue}>
+                        <select className="form-control" name="bootVersion" id="bootVersion" value={this.state.versionValue} onChange={this.handleBootVersionChange}>
                             {
                                 this.state.bootVersion.map((content, idx) => {
                                     return <option key={idx}
