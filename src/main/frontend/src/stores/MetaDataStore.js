@@ -18,6 +18,7 @@ class MetaDataStore extends BaseStore {
         this.languages;
         this.javaVersions;
         this.dependencies;
+        this.version;
     }
 
     _registerToActions(payload) {
@@ -37,6 +38,10 @@ class MetaDataStore extends BaseStore {
                 this.languages = this.metas.languages;
                 this.javaVersions = this.metas.javaVersions;
                 this.dependencies = this.metas.dependencies;
+                this.version = this.bootVersions.content.filter(boot => boot.default)[0].id
+                break;
+            case ActionConstants.UI_DEPENDENCIES:
+                this.version = action.version;
                 break;
             default:
                 return true;
@@ -45,6 +50,10 @@ class MetaDataStore extends BaseStore {
         this.emitChange();
 
         return true;
+    }
+
+    get Version() {
+        return this.version;
     }
 
     get Dependencies() {

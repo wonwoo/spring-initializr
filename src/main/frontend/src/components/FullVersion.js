@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import MetaDataStore from '../stores/MetaDataStore';
 import $ from 'jquery';
+import Versions from '../core/Versions';
+import Utils from '../core/Utils';
 
 export default class FullVersion extends Component {
     constructor(props) {
@@ -41,7 +43,23 @@ export default class FullVersion extends Component {
         this.setState({
             dependencies : MetaDataStore.Dependencies.content
         });
+        console.log(MetaDataStore.Version);
+        this.refreshDependencies(MetaDataStore.Version);
     }
+    refreshDependencies(versionRange) {
+        var versions = new Versions();
+        $("#dependencies div.checkbox").each(function (idx, item) {
+            if ($(item).attr('data-range') === 'null' || $(item).attr('data-range') === undefined || versions.matchRange($(item).attr('data-range'))(versionRange)) {
+                $("input", item).removeAttr("disabled");
+                $(item).removeClass("disabled");
+            } else {
+                $("input", item).prop('checked', false);
+                $(item).addClass("disabled");
+                $("input", item).attr("disabled", true);
+                Utils.removeTag($("input", item).val());
+            }
+        });
+    };
 
     render() {
         var DependenciesNode = this.state.dependencies.map((content, id) => {

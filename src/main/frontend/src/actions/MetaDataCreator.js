@@ -19,5 +19,11 @@ export default {
                     error: error
                 });
             });
+    },
+    getUiDependencies: function(version) {
+        Dispatcher.handleViewAction({
+            actionType: ActionConstants.UI_DEPENDENCIES,
+            version: version
+        });
     }
 }

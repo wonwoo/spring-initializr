@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MetaDataStore from '../stores/MetaDataStore';
+import MetaDataCreator from '../actions/MetaDataCreator';
 import Versions from '../core/Versions';
 import $ from 'jquery';
 import Utils from '../core/Utils';
@@ -37,8 +38,8 @@ export default class Choice extends Component {
     }
 
     handleBootVersionChange(event) {
+        MetaDataCreator.getUiDependencies(event.target.value);
         this.setState({versionValue: event.target.value});
-        this.refreshDependencies(this.state.versionValue);
     }
 
     _onChange() {
@@ -46,25 +47,10 @@ export default class Choice extends Component {
             types : MetaDataStore.Types.content,
             bootVersion : MetaDataStore.BootVersions.content,
             typeValue : MetaDataStore.Types.content.filter(boot => boot.default)[0].id,
-            versionValue : MetaDataStore.BootVersions.content.filter(boot => boot.default)[0].id,
+            versionValue : MetaDataStore.Version
         });
-        this.refreshDependencies(this.state.versionValue)
     }
 
-    refreshDependencies(versionRange) {
-        var versions = new Versions();
-        $("#dependencies div.checkbox").each(function (idx, item) {
-            if ($(item).attr('data-range') === 'null' || $(item).attr('data-range') === undefined || versions.matchRange($(item).attr('data-range'))(versionRange)) {
-                $("input", item).removeAttr("disabled");
-                $(item).removeClass("disabled");
-            } else {
-                $("input", item).prop('checked', false);
-                $(item).addClass("disabled");
-                $("input", item).attr("disabled", true);
-                Utils.removeTag($("input", item).val());
-            }
-        });
-    };
 
     render() {
         return (
