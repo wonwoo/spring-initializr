@@ -77,6 +77,7 @@ public class StarterService {
 
   }
 
+
   private UriComponentsBuilder createURIBuilder(String path) {
     return UriComponentsBuilder.fromHttpUrl(springProperties.getUrl()).path(path);
   }
