@@ -6,6 +6,6 @@ spring boot + react + flux
 
 ## how to run?
 ```
-# clone https://github.com/wonwoo/spring-initializr.git
+# git clone https://github.com/wonwoo/spring-initializr.git
 # mvn spring-boot:run
 ```
