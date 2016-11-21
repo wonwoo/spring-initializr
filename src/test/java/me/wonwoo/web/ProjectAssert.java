@@ -15,15 +15,15 @@ public class ProjectAssert {
 
   public static final String DEFAULT_APPLICATION_NAME = "DemoApplication";
 
-  final File dir;
-  Boolean mavenProject;
+  private final File dir;
+  private Boolean mavenProject;
 
   /**
    * Create a new instance with the directory holding the generated project.
    *
    * @param dir
    */
-  ProjectAssert(File dir) {
+  public ProjectAssert(File dir) {
     this.dir = dir;
   }
 
@@ -62,7 +62,7 @@ public class ProjectAssert {
 //    new SourceCodeAssert(sourceCodePath, file(sourceCodePath).text)
 //  }
 
-  ProjectAssert isMavenProject() {
+  public ProjectAssert isMavenProject() {
     hasFile("pom.xml").hasNoFile("build.gradle");
     hasFile("mvnw", "mvnw.cmd",
       ".mvn/wrapper/maven-wrapper.properties",
@@ -71,7 +71,7 @@ public class ProjectAssert {
     return this;
   }
 
-  ProjectAssert isGradleProject() {
+  public ProjectAssert isGradleProject() {
     hasFile("build.gradle").hasNoFile("pom.xml");
     hasFile("gradlew", "gradlew.bat",
       "gradle/wrapper/gradle-wrapper.properties",
@@ -80,31 +80,31 @@ public class ProjectAssert {
     return this;
   }
 
-  ProjectAssert isJavaProject(String expectedPackageName, String expectedApplicationName) {
+  public ProjectAssert isJavaProject(String expectedPackageName, String expectedApplicationName) {
     return isGenericProject(expectedPackageName, expectedApplicationName, "java", "java");
   }
 
-  ProjectAssert isJavaProject() {
+  public ProjectAssert isJavaProject() {
     return isJavaProject(DEFAULT_PACKAGE_NAME, DEFAULT_APPLICATION_NAME);
   }
 
-  ProjectAssert isGroovyProject(String expectedPackageName, String expectedApplicationName) {
+  public ProjectAssert isGroovyProject(String expectedPackageName, String expectedApplicationName) {
     return isGenericProject(expectedPackageName, expectedApplicationName, "groovy", "groovy");
   }
 
-  ProjectAssert isKotlinProject(String expectedPackageName, String expectedApplicationName) {
+  public ProjectAssert isKotlinProject(String expectedPackageName, String expectedApplicationName) {
     return isGenericProject(expectedPackageName, expectedApplicationName, "kotlin", "kt");
   }
 
-  ProjectAssert isGroovyProject() {
+  public ProjectAssert isGroovyProject() {
     return isGroovyProject(DEFAULT_PACKAGE_NAME, DEFAULT_APPLICATION_NAME);
   }
 
-  ProjectAssert isKotlinProject() {
+  public ProjectAssert isKotlinProject() {
     return isKotlinProject(DEFAULT_PACKAGE_NAME, DEFAULT_APPLICATION_NAME);
   }
 
-  ProjectAssert isGenericProject(String expectedPackageName, String expectedApplicationName,
+  public ProjectAssert isGenericProject(String expectedPackageName, String expectedApplicationName,
                                  String codeLocation, String extension) {
     String packageName = expectedPackageName.replace(".", "/");
 
@@ -114,15 +114,15 @@ public class ProjectAssert {
     return this;
   }
 
-  ProjectAssert isJavaWarProject(String expectedApplicationName) {
+  public ProjectAssert isJavaWarProject(String expectedApplicationName) {
     return isGenericWarProject(DEFAULT_PACKAGE_NAME, expectedApplicationName, "java", "java");
   }
 
-  ProjectAssert isJavaWarProject() {
+  public ProjectAssert isJavaWarProject() {
     return isJavaWarProject(DEFAULT_APPLICATION_NAME);
   }
 
-  ProjectAssert isGenericWarProject(String expectedPackageName, String expectedApplicationName,
+  public ProjectAssert isGenericWarProject(String expectedPackageName, String expectedApplicationName,
                                     String codeLocation, String extension) {
     String packageName = expectedPackageName.replace(".", "/");
     isGenericProject(expectedPackageName, expectedApplicationName, codeLocation, extension)
@@ -131,27 +131,27 @@ public class ProjectAssert {
     return this;
   }
 
-  ProjectAssert hasStaticAndTemplatesResources(boolean web) {
+  public ProjectAssert hasStaticAndTemplatesResources(boolean web) {
     assertFile("src/main/resources/templates", web);
     assertFile("src/main/resources/static", web);
     return this;
   }
 
-  ProjectAssert hasFile(String... localPaths) {
+  public ProjectAssert hasFile(String... localPaths) {
     for (String localPath : localPaths) {
       assertFile(localPath, true);
     }
     return this;
   }
 
-  ProjectAssert hasNoFile(String... localPaths) {
+  public ProjectAssert hasNoFile(String... localPaths) {
     for (String localPath : localPaths) {
       assertFile(localPath, false);
     }
     return this;
   }
 
-  ProjectAssert assertFile(String localPath, boolean exist) {
+  public ProjectAssert assertFile(String localPath, boolean exist) {
     final File candidate = file(localPath);
     assertEquals(exist, candidate.exists());
     return this;
