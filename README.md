@@ -9,3 +9,6 @@ spring boot + react + flux
 # git clone https://github.com/wonwoo/spring-initializr.git
 # mvn spring-boot:run
 ```
+
+## demo 
+https://spring-initializr.herokuapp.com/
